@@ -54,4 +54,20 @@ describe('DoctorsComponent', () => {
         expect(component.errorMessage ).toBe(errorMessage);
 
     });
+
+    it("should make a call to delete doctor component", () => {
+
+        spyOn(window, 'confirm').and.returnValue(true);
+        let spy = spyOn(service, 'deleteDoctor').and.callFake(() => EMPTY);
+        component.deleteDoctor("23")
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it("should not make a call to delete doctor component", () => {
+
+        spyOn(window, 'confirm').and.returnValue(false);
+        let spy = spyOn(service, 'deleteDoctor').and.callFake(() => EMPTY);
+        component.deleteDoctor("23")
+        expect(spy).not.toHaveBeenCalled();
+    });
 });
