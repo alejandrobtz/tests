@@ -1,4 +1,4 @@
-import { from } from 'rxjs';
+import { EMPTY, from, throwError } from 'rxjs';
 import { DoctorsComponent } from './doctors.component';
 import { DoctorsService } from './doctors.service';
 import { HttpClient } from '@angular/common/http'
@@ -21,9 +21,37 @@ describe('DoctorsComponent', () => {
         spyOn( service, 'getDoctors' ).and.callFake( () => {
             return from(doctors);
         });
+        
 
         component.ngOnInit()
         expect(component.doctors.length).toBeGreaterThan(0);
     });
 
+    it("should make a request to the server for adding a doctor", () => {
+        const spy = spyOn(service, 'addDoctor').and.callFake((doc) => {
+            return EMPTY;
+        });
+
+        component.addDoctor();
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it("should add a new doctor to the doctor array",  () => {
+        const doctor = { id: 1, name: 'Juan Carlos' };
+
+        spyOn(service, 'addDoctor').and.returnValue( from( [ doctor ] ) );
+        
+        component.addDoctor();
+        expect(component.doctors.indexOf( doctor )).toBeGreaterThanOrEqual(0);
+    });
+
+    it("If fails the errorMessage property must be the same.", () => {
+        const errorMessage = 'We were unable to add the new doctor.'
+
+        spyOn(service, 'addDoctor').and.returnValue(throwError(() => errorMessage));
+        component.addDoctor();
+
+        expect(component.errorMessage ).toBe(errorMessage);
+
+    });
 });

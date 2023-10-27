@@ -22,18 +22,18 @@ export class DoctorsComponent implements OnInit {
     .subscribe( (doctors:any) => this.doctors = doctors );
   }
 
-  agregarMedico() {
-    const doctor = { name: 'Doctor Juan Carlos' };
+  addDoctor() {
+    const doctor = { id: 1,  name: 'Juan Carlos' };
 
-    this._medicoService.AddDoctor(doctor)
+    this._medicoService.addDoctor(doctor)
           .subscribe( {
-            next: (doctorDb) =>  this.doctors.push(doctorDb),
+            next: (doctorDb) => this.doctors.push(doctorDb),
             error: err => this.errorMessage = err
           });
   }
 
-  borrarMedico(id: string) {
-    const confirmation = confirm('Are you sure you want to delete this doctor ?= ');
+  deleteDoctor(id: string) {
+    const confirmation = confirm('Are you sure you want to delete this doctor ?');
 
     if ( confirmation ) {
       this._medicoService.deleteDoctor( id );

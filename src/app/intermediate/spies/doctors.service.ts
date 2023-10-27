@@ -13,10 +13,9 @@ export class DoctorsService {
     );
   }
 
-  AddDoctor( doctor: any ) {
+  addDoctor( doctor: any ) {
     return this.httpClient.post('...', doctor ).pipe(
       map( (resp: any) => resp['doctor'] )
-
     );
   }
 
