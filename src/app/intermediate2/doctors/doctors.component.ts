@@ -20,7 +20,7 @@ export class DoctorsComponent {
   }
 
   getDoctors() {
-    this.doctorsService.getDoctors().subscribe( (doctors: any )=> this.doctors = doctors );
+    this.doctorsService.getDoctors().subscribe( (doctors: any ) => this.doctors = doctors );
   }
 
 }

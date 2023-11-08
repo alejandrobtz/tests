@@ -8,6 +8,8 @@ import { HospitalsComponent } from './intermediate2/hospitals/hospitals/hospital
 import { IncreaserComponent } from './intermediate2/increaser/increaser.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './advanced/routes/app.routes';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [ DoctorService ],
   bootstrap: [AppComponent]

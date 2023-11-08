@@ -28,4 +28,11 @@ describe( "Doctors component", () => {
         let res = component.greetDoctor( 'Mario' );
         expect( res ).toContain( 'Mario' );
     });
+
+    it('should get doctors', () => {
+        let doctors: any[];
+        
+
+
+    })
 });

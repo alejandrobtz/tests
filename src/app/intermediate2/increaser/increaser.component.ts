@@ -49,7 +49,6 @@ export class IncreaserComponent implements OnInit {
     }
 
     this.progreso = this.progreso + valor;
-
     this.cambioValor.emit( this.progreso );
 
   }
