@@ -1,15 +1,25 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing'
-import { ROUTES } from './advanced/routes/app.routes';
+import { RouterOutlet } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
-	beforeEach(() => TestBed.configureTestingModule({
-		declarations: [AppComponent],
-		imports: [
-			RouterTestingModule.withRoutes(ROUTES)
-		]
-	}));
+
+    let fixture : ComponentFixture<AppComponent>;
+    let component: AppComponent;
+
+    beforeEach(() => {
+
+       TestBed.configureTestingModule({
+        declarations:[ AppComponent ],
+        imports: [ RouterTestingModule.withRoutes([]) ],
+		schemas:[ NO_ERRORS_SCHEMA ]
+       });
+       fixture = TestBed.createComponent(AppComponent);
+       component = fixture.componentInstance;
+    });
 
 	it('should create the app', () => {
 		const fixture = TestBed.createComponent(AppComponent);
@@ -17,10 +27,11 @@ describe('AppComponent', () => {
 		expect(app).toBeTruthy();
 	});
 
-	it(`should have as title 'tests'`, () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.componentInstance;
-		expect(app.title).toEqual('tests');
-	});
+	
+    it('Should have a router-outlet.', () => {
+        const debugElement = fixture.debugElement.query( By.directive( RouterOutlet ) );
+        expect( debugElement ).not.toBeNull();
+    });
+
 
 });
