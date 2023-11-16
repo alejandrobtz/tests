@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './advanced/routes/app.routes';
 import { NavbarComponent } from './advanced/routes/navbar/navbar.component';
+import { RouterDoctorComponent } from './advanced/router-doctor/router-doctor.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NavbarComponent } from './advanced/routes/navbar/navbar.component';
     DoctorsComponent,
     HospitalsComponent,
     IncreaserComponent,
-    NavbarComponent
+    NavbarComponent,
+    RouterDoctorComponent
   ],
   imports: [
     BrowserModule,
